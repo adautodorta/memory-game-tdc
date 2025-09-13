@@ -22,7 +22,7 @@ function Card({
 }) {
   const cardTransitionClasses = "transition duration-500";
   const cardContentTransitionClasses = "transition duration-300";
-  const contentClasses = "bg-purple-400 w-full h-full absolute top-0 left-0 rounded";
+  const contentClasses = "bg-stone-400 w-full h-full absolute top-0 left-0 rounded";
   const flipUpClasses = "scale-x-100 opacity-100";
   const flipDownClasses = "-scale-x-100 opacity-0";
 
@@ -83,28 +83,28 @@ export function Board() {
   }
 
   return (
-    <div className="flex w-full items-center justify-center gap-6 flex-col text-purple-950 min-h-screen bg-gradient-to-br from-purple-100 to-purple-200 p-4" aria-label="Memory Board">
+    <div className="flex w-full items-center justify-center gap-6 flex-col text-stone-950 min-h-screen bg-gradient-to-br from-stone-100 to-stone-200 p-4" aria-label="Memory Board">
       <div className="flex flex-col bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-4 text-purple-900">
+        <h1 className="text-2xl font-bold text-center mb-4 text-stone-900">
           🧠 Jogo da Memória
         </h1>
         
         <div className="flex justify-between items-center mb-4">
           <div className="text-center">
-            <p className="text-sm text-purple-600">Tempo</p>
-            <p className={`text-2xl font-bold ${state.timeLeft <= 10 ? 'text-red-500' : 'text-purple-900'}`}>
+            <p className="text-sm text-stone-600">Tempo</p>
+            <p className={`text-2xl font-bold ${state.timeLeft <= 10 ? 'text-red-500' : 'text-stone-900'}`}>
               {state.timeLeft}s
             </p>
           </div>
           
           <div className="text-center">
-            <p className="text-sm text-purple-600">Tentativas</p>
-            <p className="text-2xl font-bold text-purple-900">{state.moves}</p>
+            <p className="text-sm text-stone-600">Tentativas</p>
+            <p className="text-2xl font-bold text-stone-900">{state.moves}</p>
           </div>
           
           <div className="text-center">
-            <p className="text-sm text-purple-600">Pares</p>
-            <p className="text-2xl font-bold text-purple-900">
+            <p className="text-sm text-stone-600">Pares</p>
+            <p className="text-2xl font-bold text-stone-900">
               {state.found.length}/{CARDS.length / 2}
             </p>
           </div>

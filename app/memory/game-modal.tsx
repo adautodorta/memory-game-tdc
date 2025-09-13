@@ -21,11 +21,11 @@ export function GameModal({ type, moves, timeLeft, onPlayAgain, onGoHome }: Game
             <div className="text-6xl mb-4">��</div>
           )}
           
-          <h2 className="text-3xl font-bold text-purple-900 mb-2">
+          <h2 className="text-3xl font-bold text-stone-900 mb-2">
             {isWon ? 'Parabéns!' : 'Tempo Esgotado!'}
           </h2>
           
-          <p className="text-lg text-purple-700 mb-4">
+          <p className="text-lg text-stone-700 mb-4">
             {isWon 
               ? `Você encontrou todos os pares em ${moves} tentativas!`
               : 'Você não conseguiu encontrar todos os pares a tempo.'
@@ -33,7 +33,7 @@ export function GameModal({ type, moves, timeLeft, onPlayAgain, onGoHome }: Game
           </p>
           
           {isWon && (
-            <p className="text-sm text-purple-600 mb-4">
+            <p className="text-sm text-stone-600 mb-4">
               Tempo restante: {timeLeft} segundos
             </p>
           )}
@@ -42,7 +42,7 @@ export function GameModal({ type, moves, timeLeft, onPlayAgain, onGoHome }: Game
         <div className="space-y-3">
           <button
             onClick={onPlayAgain}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-200"
+            className="w-full bg-stone-600 hover:bg-stone-700 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-200"
           >
             🔄 Jogar Novamente
           </button>
