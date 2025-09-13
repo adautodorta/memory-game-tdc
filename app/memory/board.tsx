@@ -4,8 +4,10 @@ import { useEffect, useReducer } from "react";
 
 import { useGame } from "./use-game";
 import { isGameOver } from "./utils";
-import { MATCHING_CARDS } from "./constants";
+import { CARDS, MATCHING_CARDS } from "./constants";
 import Image from "next/image";
+import { StartScreen } from "./start-screen";
+import { GameModal } from "./game-modal";
 
 function Card({
   item,
@@ -64,22 +66,55 @@ function Card({
 export function Board() {
   const { state, handler } = useGame();
 
+  if (state.status === 'initial') {
+    return <StartScreen onStart={handler.startGame} />;
+  }
+
+  if (state.status === 'won' || state.status === 'lost') {
+    return (
+      <GameModal
+        type={state.status}
+        moves={state.moves}
+        timeLeft={state.timeLeft}
+        onPlayAgain={handler.reset}
+        onGoHome={handler.goToInitial}
+      />
+    );
+  }
+
   return (
-    <div className="flex w-full items-center justify-center gap-6 flex-col text-purple-950" aria-label="Memory Board">
-      <div className="flex flex-col">
-        <p>Encontre todos os pares de cartas correspondentes.</p>
-      <div className="flex justify-between">
-        <p>Cartas encontradas: {Number(state.found.length) * MATCHING_CARDS}</p>
-        <p>Tentativas: {state.moves}</p>
-      </div>
-        {isGameOver(state.found) ? (
-          <p className="font-bold">Fim de Jogo!</p>
-        ) : null}
+    <div className="flex w-full items-center justify-center gap-6 flex-col text-purple-950 min-h-screen bg-gradient-to-br from-purple-100 to-purple-200 p-4" aria-label="Memory Board">
+      <div className="flex flex-col bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center mb-4 text-purple-900">
+          🧠 Jogo da Memória
+        </h1>
+        
+        <div className="flex justify-between items-center mb-4">
+          <div className="text-center">
+            <p className="text-sm text-purple-600">Tempo</p>
+            <p className={`text-2xl font-bold ${state.timeLeft <= 10 ? 'text-red-500' : 'text-purple-900'}`}>
+              {state.timeLeft}s
+            </p>
+          </div>
+          
+          <div className="text-center">
+            <p className="text-sm text-purple-600">Tentativas</p>
+            <p className="text-2xl font-bold text-purple-900">{state.moves}</p>
+          </div>
+          
+          <div className="text-center">
+            <p className="text-sm text-purple-600">Pares</p>
+            <p className="text-2xl font-bold text-purple-900">
+              {state.found.length}/{CARDS.length / 2}
+            </p>
+          </div>
+        </div>
+
         <button
-          className="self-center px-4 mt-2 font-bold border rounded border-gray-600 text-slate-800"
-          onClick={() => handler.reset()}
+          className="self-center px-4 py-2 font-bold border rounded border-gray-600 text-slate-800 hover:bg-gray-100 transition-colors duration-200"
+          onClick={() => handler.goToInitial()}
         >
-          Resetar Jogo
+          🏠 Voltar ao Início
         </button>
       </div>
 

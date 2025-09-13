@@ -2,9 +2,7 @@ import { Board } from './memory/board';
 
 export default function MemoryPage() {
   return (
-    <main className="flex flex-col gap-6 min-h-screen items-center justify-center p-4">
-      <h1 className="font-bold text-3xl">Jogo da Memória</h1>
-
+    <main className="min-h-screen">
       <Board />
     </main>
   )
