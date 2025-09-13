@@ -8,6 +8,7 @@ import { CARDS, MATCHING_CARDS } from "./constants";
 import Image from "next/image";
 import { StartScreen } from "./start-screen";
 import { GameModal } from "./game-modal";
+import { usePWA } from "./use-pwa";
 
 function Card({
   item,
@@ -65,6 +66,7 @@ function Card({
 
 export function Board() {
   const { state, handler } = useGame();
+  const { isInstallable, installApp } = usePWA();
 
   if (state.status === 'initial') {
     return <StartScreen onStart={handler.startGame} />;
@@ -116,6 +118,15 @@ export function Board() {
         >
           🏠 Voltar ao Início
         </button>
+
+        {isInstallable && (
+            <button
+              className="flex-1 px-4 py-2 font-bold bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-200"
+              onClick={installApp}
+            >
+              📱 Instalar App
+            </button>
+          )}
       </div>
 
       <div className="flex w-11/12 md:w-2/3 max-w-md items-center justify-center gap-2 flex-wrap">
